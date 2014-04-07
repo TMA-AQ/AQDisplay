@@ -15,7 +15,7 @@ namespace aq
 class Base
 {
 public:
-  typedef boost::shared_ptr<Base> Ptr;
+  typedef std::shared_ptr<Base> Ptr;
 	typedef std::vector<Table::Ptr> tables_t;
   
   Base();

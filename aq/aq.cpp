@@ -4,7 +4,6 @@
 #include <aq/display/DatabaseHelper.h>
 #include <fstream>
 #include <iostream>
-#include <boost/algorithm/string/case_conv.hpp>
 #include <boost/program_options.hpp>
 #include <boost/algorithm/string.hpp>
 

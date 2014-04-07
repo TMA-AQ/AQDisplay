@@ -6,13 +6,6 @@
 #include <cstdio>
 #include <cstdarg>
 #include <sstream>
-#include <boost/cstdint.hpp>
-#include <boost/thread/mutex.hpp>
-
-#if defined(__FreeBSD__)
-# include <syslog.h>
-# include <pthread.h>
-#endif
 
 #define LOG_FILE  -1
 
@@ -72,8 +65,6 @@ namespace aq
     char ident[64];
     char statsIdent[64];
     char httpIdent[64];
-
-    mutable boost::mutex mutex;
 
     bool colorLog;
     bool lockMode;

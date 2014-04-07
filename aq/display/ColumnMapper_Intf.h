@@ -2,7 +2,7 @@
 #define __COLUMN_MAPPER_INTF_H__
 
 #include <cstring>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace aq
 {
@@ -21,7 +21,7 @@ template <typename T>
 class ColumnMapper_Intf
 {
 public:
-	typedef boost::shared_ptr<ColumnMapper_Intf> Ptr;
+	typedef std::shared_ptr<ColumnMapper_Intf> Ptr;
   virtual ~ColumnMapper_Intf() {}
 
   /// \brief load an item

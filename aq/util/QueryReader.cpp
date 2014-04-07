@@ -1,8 +1,6 @@
 #include "QueryReader.h"
 
 #include <iostream>
-#include <boost/filesystem.hpp>
-#include <boost/program_options.hpp>
 #include <boost/algorithm/string.hpp>
 
 using namespace aq;

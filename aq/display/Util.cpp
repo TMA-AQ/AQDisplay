@@ -6,10 +6,8 @@
 #include <aq/util/Exceptions.h>
 #include <algorithm>
 #include <fstream>
-#include <boost/tuple/tuple.hpp>
+#include <tuple>
 #include <boost/filesystem.hpp>
-#include <boost/program_options.hpp>
-#include <boost/algorithm/string.hpp>
 #include <boost/variant.hpp>
 
 namespace aq
@@ -147,7 +145,7 @@ void push_to_cb<char*>(char * buf, display_cb * cb, size_t index, column_mapper_
 class print_data
 {
 public:
-  typedef std::vector<boost::tuple<size_t, aq::ColumnType, column_mapper_t> > display_order_t;
+  typedef std::vector<std::tuple<size_t, aq::ColumnType, column_mapper_t> > display_order_t;
 
 public:
   print_data(
@@ -176,9 +174,9 @@ public:
     {
       for (auto& c : display_order)
       {
-        auto& tindex = boost::get<0>(c);
-        auto& type = boost::get<1>(c);
-        auto& cm = boost::get<2>(c);
+        auto& tindex = std::get<0>(c);
+        auto& type = std::get<1>(c);
+        auto& cm = std::get<2>(c);
         auto index = rows[tindex];
         if (index == 0)
         {
@@ -219,7 +217,7 @@ private:
   std::stringstream ss;
   const struct opt& o;
   display_cb * cb;
-  std::vector<boost::tuple<size_t, aq::ColumnType, column_mapper_t> >& display_order;
+  std::vector<std::tuple<size_t, aq::ColumnType, column_mapper_t> >& display_order;
 };
 
 // ------------------------------------------------------------------------------
@@ -235,7 +233,7 @@ int display(display_cb * cb,
 
   // check size, print column name and prepare column mapping
   size_t size = 0;
-  std::vector<boost::tuple<size_t, aq::ColumnType, column_mapper_t> > display_order(selectedColumns.size());
+  std::vector<std::tuple<size_t, aq::ColumnType, column_mapper_t> > display_order(selectedColumns.size());
   for (size_t tindex = 0; tindex < matrix.size(); tindex++)
   {
     auto& t = matrix[tindex];
@@ -284,7 +282,7 @@ int display(display_cb * cb,
           }
           break;
         }
-        display_order[std::distance(selectedColumns.begin(), it)] = boost::make_tuple(tindex, col->getType(), cm);
+        display_order[std::distance(selectedColumns.begin(), it)] = std::make_tuple(tindex, col->getType(), cm);
       }
     }
   }
@@ -331,9 +329,9 @@ int display(display_cb * cb,
 
       for (auto& c : display_order)
       {
-        auto& tindex = boost::get<0>(c);
-        auto& type = boost::get<1>(c);
-        auto& cm = boost::get<2>(c);
+        auto& tindex = std::get<0>(c);
+        auto& type = std::get<1>(c);
+        auto& cm = std::get<2>(c);
         auto index = matrix[tindex].indexes[i];
         if (index == 0)
         {

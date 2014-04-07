@@ -16,7 +16,7 @@ namespace aq
 class Table
 {
 public:
-  typedef boost::shared_ptr<Table> Ptr;
+  typedef std::shared_ptr<Table> Ptr;
 	typedef std::vector<Column::Ptr> columns_t;
 
 	Table(const std::string& name, unsigned int ID, uint64_t _totalCount);

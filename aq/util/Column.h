@@ -6,7 +6,7 @@
 
 #include <vector>
 #include <string>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace aq
 {
@@ -16,7 +16,7 @@ class Column
 {
 public:
   
-  typedef boost::shared_ptr<Column> Ptr;
+  typedef std::shared_ptr<Column> Ptr;
 
 	Column();
 	Column(aq::ColumnType type);
@@ -62,8 +62,8 @@ private:
 	Column::Ptr	Count;	//reference to count column
 	std::string	TableName;
 
-	boost::shared_ptr<aq::FileMapper> prmMapper;
-	boost::shared_ptr<aq::FileMapper> thesaurusMapper;
+	std::shared_ptr<aq::FileMapper> prmMapper;
+	std::shared_ptr<aq::FileMapper> thesaurusMapper;
 
 	size_t prmFileItemSize;
 	size_t currentNumPack;

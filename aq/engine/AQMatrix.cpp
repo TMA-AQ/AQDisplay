@@ -6,9 +6,8 @@
 #include <iostream>
 #include <set>
 #include <list>
+#include <cinttypes>
 #include <boost/scoped_array.hpp>
-#include <boost/lexical_cast.hpp>
-#include <boost/bind.hpp>
 
 using namespace aq::engine;
  
@@ -310,7 +309,7 @@ void AQMatrix::writeTemporaryTable()
       auto it = fds[c].find(packet);
       if (it == fds[c].end())
       {
-        sprintf(filename, "%s/B001REG%.4luTMP%.4lluP%.12llu.TMP", this->settings->tmpPath.c_str(), this->matrix[c].table_id, this->uid, packet);
+        sprintf(filename, "%s/B001REG%.4luTMP%.4"PRIu64"P%.12"PRIu64".TMP", this->settings->tmpPath.c_str(), this->matrix[c].table_id, this->uid, packet);
         fd = fopen(filename, "wb");
         if (fd == nullptr)
         {
@@ -348,11 +347,11 @@ void AQMatrix::writeTemporaryTable()
     uint64_t n = table->getTotalCount() / this->settings->packSize;
     for (uint64_t i = 0; i <= n; ++i)
     {
-      sprintf(filename, "%s/B001REG%.4luTMP%.4lluP%.12llu.TMP", this->settings->tmpPath.c_str(), (*it).table_id, this->uid, i);
+      sprintf(filename, "%s/B001REG%.4luTMP%.4"PRIu64"P%.12"PRIu64".TMP", this->settings->tmpPath.c_str(), (*it).table_id, this->uid, i);
       FILE * fd = fopen(filename, "ab");
       fclose(fd);
     }
-    sprintf(tableName, "B001REG%.4luTMP%.4lluP%.12llu", (*it).table_id, this->uid, n + 1);
+    sprintf(tableName, "B001REG%.4luTMP%.4"PRIu64"P%.12"PRIu64, (*it).table_id, this->uid, n + 1);
     (*it).tableName = tableName;
     (*it).baseTableName = table->getName();
   }

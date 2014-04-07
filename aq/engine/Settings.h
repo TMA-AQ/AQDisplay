@@ -14,8 +14,7 @@
 
 #include <string>
 #include <sstream>
-#include <boost/shared_ptr.hpp>
-#include <boost/optional.hpp>
+#include <memory>
 
 #define STR_BUF_SIZE 4096
 
@@ -29,7 +28,7 @@ namespace aq
 /// \brief AlgoQuest Settings
 struct Settings 
 {
-  typedef boost::shared_ptr<Settings> Ptr;
+  typedef std::shared_ptr<Settings> Ptr;
   
   mutable std::stringstream output;
 

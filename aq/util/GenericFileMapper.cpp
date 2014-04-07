@@ -2,7 +2,9 @@
 #include "Logger.h"
 #include "Exceptions.h"
 #include <iostream>
-#include <stdint.h>
+#include <cstdint>
+#include <cassert>
+#include <limits>
 
 using namespace aq;
 

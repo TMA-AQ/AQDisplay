@@ -2,8 +2,6 @@
 #include "Logger.h"
 #include "Exceptions.h"
 #include <fstream>
-#include <boost/bind.hpp>
-#include <boost/scoped_array.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
 
@@ -158,7 +156,7 @@ void Base::dumpXml( std::ostream& os ) const
 {
   os << "<Database Name=\"" << this->Name << "\">" << std::endl;
   os << "<Tables>" << std::endl;
-  std::for_each(this->Tables.begin(), this->Tables.end(), boost::bind(&Table::dumpXml, _1, boost::ref(os)));
+  std::for_each(this->Tables.begin(), this->Tables.end(), [&] (const tables_t::value_type& table) { table->dumpXml(os); });
   os << "</Tables>" << std::endl;
   os << "</Database>" << std::endl;
  }

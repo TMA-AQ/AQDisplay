@@ -6,11 +6,8 @@
 #include <memory>
 #include <algorithm>
 #include <set>
-#include <boost/scoped_array.hpp>
-#include <boost/bind.hpp>
-#include <boost/algorithm/string/trim.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/thread.hpp>
+
+#include <boost/algorithm/string.hpp>
 
 //------------------------------------------------------------------------------
 #define STR_BIG_BUF_SIZE 1048576

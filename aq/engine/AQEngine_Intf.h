@@ -30,7 +30,7 @@ public:
 class AQENGINE_API AQEngine_Intf
 {
 public:
-  typedef boost::shared_ptr<AQEngine_Intf> Ptr;
+  typedef std::shared_ptr<AQEngine_Intf> Ptr;
 
   enum mode_t
   {

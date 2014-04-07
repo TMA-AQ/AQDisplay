@@ -36,7 +36,7 @@ namespace engine
 class AQMatrix
 {
 public:
-  typedef boost::shared_ptr<AQMatrix> Ptr;
+  typedef std::shared_ptr<AQMatrix> Ptr;
   typedef std::vector<size_t> v_size_t;
 
 	struct column_t

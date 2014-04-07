@@ -9,7 +9,6 @@
 #include <aq/util/Database.h>
 #include <map>
 #include <vector>
-#include <boost/shared_ptr.hpp>
 #include <boost/filesystem.hpp>
 
 namespace aq
@@ -41,10 +40,10 @@ private:
 	const std::string path;
   typename M::mode_t mode;
   bool cache;
-	boost::shared_ptr<M> prmMapper;
-	boost::shared_ptr<M> thesaurusMapper;
-	std::map<size_t, boost::shared_ptr<M> > prmMappers;
-	std::map<size_t, boost::shared_ptr<M> > thesaurusMappers;
+	std::shared_ptr<M> prmMapper;
+	std::shared_ptr<M> thesaurusMapper;
+	std::map<size_t, std::shared_ptr<M> > prmMappers;
+	std::map<size_t, std::shared_ptr<M> > thesaurusMappers;
   T * val;
 };
 
@@ -272,7 +271,7 @@ void ColumnMapper<T, M>::updatePrm(size_t offset, int gap)
 //                                                             const bool                 cache = false,
 //                                                             const typename M::mode_t   mode = M::mode_t::READ)
 //{      
-//  boost::shared_ptr<aq::ColumnMapper_Intf> cm;
+//  std::shared_ptr<aq::ColumnMapper_Intf> cm;
 //  switch(type)
 //  {
 //  case aq::ColumnType::COL_TYPE_BIG_INT:

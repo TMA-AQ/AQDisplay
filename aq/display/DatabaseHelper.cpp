@@ -64,7 +64,7 @@ bool AlgoQuestDatabase::execute(const aq::core::SelectStatement& ss)
     if (matrix != nullptr)
     {
       DatabaseIntf::result_t result;
-      boost::shared_ptr<aq::display_cb> cb(new result_handler_t(result)); 
+      std::shared_ptr<aq::display_cb> cb(new result_handler_t(result)); 
       std::vector<std::string> columns;
       aq::opt o;
       o.withCount = o.withIndex = false;

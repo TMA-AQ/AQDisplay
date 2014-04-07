@@ -3,7 +3,6 @@
 #include "Exceptions.h"
 #include <cstring>
 #include <sstream>
-#include <boost/scoped_array.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
 

@@ -1,6 +1,7 @@
 #include "Logger.h"
-#include <boost/thread.hpp>
-#include <boost/shared_ptr.hpp>
+#include <memory>
+#include <iostream>
+#include <thread>
 
 #if defined(__FreeBSD__)
 # include <fcntl.h>
@@ -35,7 +36,7 @@
 
 using namespace aq;
 
-static boost::shared_ptr<Logger> systemLog;
+static std::shared_ptr<Logger> systemLog;
 
 Logger& Logger::getInstance()
 {
@@ -145,7 +146,7 @@ void Logger::log(int facility, const char * format, ...) const
   if (this->pidMode)
   {
     std::ostringstream id;
-    id << boost::this_thread::get_id();
+    id << std::this_thread::get_id();
     pos = ::snprintf(buf1, LOGBUFFER, "[%s] - ", id.str().c_str());
     if (pos < 0)
     {
@@ -177,14 +178,12 @@ void Logger::log(int facility, const char * format, ...) const
 #if defined (__SYSLOG__)
   if (this->mode & SYSLOG) 
   {
-    boost::mutex::scoped_lock lock(this->mutex);
     ::syslog(facility, "%s", buf1);
   }
 #endif
 
   if (this->mode & LOCALFILE) 
   {
-    boost::mutex::scoped_lock lock(this->mutex);
     ::fwrite(buf1, sizeof(char), strlen(buf1), this->localFile);
   }
 
@@ -192,7 +191,6 @@ void Logger::log(int facility, const char * format, ...) const
   {
     if (this->lockMode) 
     {
-      boost::mutex::scoped_lock lock(this->mutex);
       this->printStdOut(buf1, facility);
     }
     else
@@ -257,6 +255,5 @@ int Logger::openFile(const char * name)
 
 void Logger::closeFile(void)
 {	
-  boost::mutex::scoped_lock lock(this->mutex);
   fclose(this->localFile);
 }
